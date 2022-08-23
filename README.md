@@ -1,90 +1,53 @@
-# NxTest
+# Viðvera - Presence system
 
-This project was generated using [Nx](https://nx.dev).
+## Problem statement
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+Snerpa has used a presence system for many years now, the presence system works alright but is not responsive and just outdated. Snerpa uses the system both for internal use in addition to having a call center that has access to the presence system to see who is available to take calls. We wanted to create a presence system that is responsive since most of the time we are updating our presence through our mobile devices when running out of the office or going from one place to another outside the office, also when working from home this is useful to see who is available and who's not. I found during my initial user interviews was that a presence system is a big nice to have but the problem is that they are used incorrectly or just not used at all by the users. This is where I got the idea of adding some automation to the presence system, it would be able to connect to the companies phone system (PBX) to see if the user is on the phone and that way mark the user with a status of "busy" or "on the phone", would also be able to track the users presence in teams and/or connect to the users calendar, for example, outlook or google calendar, this way we could use all these factors to determan if the user is available or not. There were also some ideas about geolocation or geofencing to get the users availability but we would have to tread lightly in this area since most people would not want their employer tracking their location.
 
-🔎 **Smart, Fast and Extensible Build System**
+Current system only has in or out option and no automation. Here is a preview of the current system:
 
-## Adding capabilities to your workspace
+[![Kerfill Viðveru kerfi](/assets/Kerfill.png)](https://interns-tracka.vercel.app/)
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Tech stack
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+#### Code organization and productivity
 
-Below are our core plugins:
+- [Gitlab](https://gitlab.com/)
+  - Version control
+  - Agile workflow with issues -> feature branch -> merge request -> code review
+- [Nx Monorepo](https://nx.dev/)
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+#### Communication and coworking
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+- [Microsoft Teams](https://www.microsoft.com/en/microsoft-teams/)
+- [Live Share extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack) - For pair programming and co-working
 
-## Generate an application
+#### Design
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+- [Figma](https://www.figma.com/) - Frontend desgin
+- [Draw.io](https://draw.io/) - Database designMea
 
-> You can use any of the plugins above to generate applications as well.
+## Code
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+#### Infrastructure
 
-## Generate a library
+- [Keycloak](https://www.keycloak.org/) Self-hosted authentication server
+- [Kubernetes](https://kubernetes.io/) For hosting
+<!-- - [Jest](https://jestjs.io/) For unit tests -->
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+#### Backend
 
-> You can also use any of the plugins above to generate libraries as well.
+- [PostgreSQL](https://www.postgresql.org/) Database
+- [MikroORM](https://mikro-orm.io/) For managing the database with Typescript
+- [NestJS](https://nestjs.com/) For building the web service (API)
+- [Swagger](https://swagger.io/) For API documentation
+- [Nodemailer](https://nodemailer.com/) For sending emails from the web service, for example an invite
 
-Libraries are shareable across libraries and applications. They can be imported from `@vidvera/mylib`.
+#### Frontend
 
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+- [React](https://reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TailwindUI](https://tailwindui.com/)
+- [Formik](https://formik.org/) For creating and validating forms
+- [TanStack's React Query](https://tanstack.com/query/v4) For asynchronous state management on API queries
+- [@react-keycloak/web](https://www.npmjs.com/package/@react-keycloak/web) For auth context

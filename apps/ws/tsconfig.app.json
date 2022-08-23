@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "target": "es2015",
+    "strict": true
+  },
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "jest.config.ts"],
+  "include": ["**/*.ts", "src/mikro-orm.config.js"]
+}

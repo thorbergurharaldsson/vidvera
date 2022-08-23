@@ -1,0 +1,80 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# Environment Config Files
+.env
+
+# dependencies
+/node_modules
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+## BUCK
+
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+## fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+#
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+## Bundle artifact
+*.jsbundle
+
+## CocoaPods
+**/ios/Pods/
+/
+
+## Nested node_modules
+
+node_modules/
+
+apps/mobile-e2e/artifacts
+## Nested node_modules
+
+node_modules/
+
+# Next.js
+.next

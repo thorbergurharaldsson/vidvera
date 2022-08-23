@@ -1,0 +1,49 @@
+image: node:16
+stages:
+  - setup
+  - test
+
+install-dependencies:
+  stage: setup
+  interruptible: true
+  only:
+    - main
+    - merge_requests
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+      - .npm
+  before_script: 
+    - echo "//gitlab.in.snerpa.is/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+  script:
+    - npm ci --cache .npm --prefer-offline
+  artifacts:
+    paths:
+      - node_modules
+
+.distributed:
+  interruptible: true
+  only:
+    - main
+    - merge_requests
+  needs:
+    - install-dependencies
+  artifacts:
+    paths:
+      - node_modules/.cache/nx
+
+build:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=HEAD~1 --target=build --parallel=3
+
+test:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=HEAD~1 --target=test --parallel=2

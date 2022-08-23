@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "core": "libs/core",
+    "shared": "libs/shared",
+    "web-ui": "libs/web-ui",
+    "webapp": "apps/webapp",
+    "webapp-e2e": "apps/webapp-e2e",
+    "ws": "apps/ws"
+  }
+}

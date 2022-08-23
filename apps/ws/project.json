@@ -1,0 +1,102 @@
+{
+  "sourceRoot": "apps/ws/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ws",
+        "main": "apps/ws/src/main.ts",
+        "tsConfig": "apps/ws/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "optimization": false,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/ws/src/environments/environment.ts",
+              "with": "apps/ws/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "ws:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ws/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ws"],
+      "options": {
+        "jestConfig": "apps/ws/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "migration-list": {
+      "executor": "@nrwl/workspace:run-commands",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "command": "npx mikro-orm migration:list",
+        "cwd": "apps/ws"
+      }
+    },
+    "migration-create": {
+      "executor": "@nrwl/workspace:run-commands",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "command": "npx mikro-orm migration:create -p src/migrations",
+        "cwd": "apps/ws"
+      }
+    },
+    "migration-run": {
+      "executor": "@nrwl/workspace:run-commands",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "command": "npx mikro-orm migration:up",
+        "cwd": "apps/ws"
+      }
+    },
+    "migration-revert": {
+      "executor": "@nrwl/workspace:run-commands",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "command": "npx mikro-orm migration:down",
+        "cwd": "apps/ws"
+      }
+    }
+  },
+  "tags": []
+}

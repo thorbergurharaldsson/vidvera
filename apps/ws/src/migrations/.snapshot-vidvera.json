@@ -1,0 +1,1024 @@
+{
+  "namespaces": ["public"],
+  "name": "public",
+  "tables": [
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "users",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "users_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "uuid_generate_v4()",
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "displayName": {
+          "name": "displayName",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "tenants",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": ["name"],
+          "composite": false,
+          "keyName": "tenants_name_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "tenants_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "uuid_generate_v4()",
+          "mappedType": "uuid"
+        },
+        "tenantId": {
+          "name": "tenantId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "'tenant:user'",
+          "enumItems": ["tenant:admin", "tenant:user"],
+          "mappedType": "enum"
+        },
+        "workPhone": {
+          "name": "workPhone",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "isWorkPhonePrivate": {
+          "name": "isWorkPhonePrivate",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "boolean"
+        },
+        "mobilePhone": {
+          "name": "mobilePhone",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "isMobilePhonePrivate": {
+          "name": "isMobilePhonePrivate",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "boolean"
+        },
+        "jobTitle": {
+          "name": "jobTitle",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "tenants_users",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "tenants_users_tenantId_userId_unique",
+          "columnNames": ["tenantId", "userId"],
+          "composite": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "tenants_users_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "tenants_users_tenantId_foreign": {
+          "constraintName": "tenants_users_tenantId_foreign",
+          "columnNames": ["tenantId"],
+          "localTableName": "public.tenants_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants",
+          "updateRule": "cascade"
+        },
+        "tenants_users_userId_foreign": {
+          "constraintName": "tenants_users_userId_foreign",
+          "columnNames": ["userId"],
+          "localTableName": "public.tenants_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.users",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "uuid_generate_v4()",
+          "mappedType": "uuid"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "tenantId": {
+          "name": "tenantId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "acceptedAt": {
+          "name": "acceptedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "inviteSentAt": {
+          "name": "inviteSentAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "tenant_invites",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "tenant_invites_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "tenant_invites_tenantId_foreign": {
+          "constraintName": "tenant_invites_tenantId_foreign",
+          "columnNames": ["tenantId"],
+          "localTableName": "public.tenant_invites",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "tenant": {
+          "name": "tenant",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "color": {
+          "name": "color",
+          "type": "varchar(7)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 7,
+          "default": "'#000000'",
+          "mappedType": "string"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "scopes",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "scopes_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "scopes_tenant_foreign": {
+          "constraintName": "scopes_tenant_foreign",
+          "columnNames": ["tenant"],
+          "localTableName": "public.scopes",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants",
+          "deleteRule": "CASCADE",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "scopeId": {
+          "name": "scopeId",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "userId": {
+          "name": "userId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "scopes_users",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "scopes_users_pkey",
+          "columnNames": ["scopeId", "userId"],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "scopes_users_scopeId_foreign": {
+          "constraintName": "scopes_users_scopeId_foreign",
+          "columnNames": ["scopeId"],
+          "localTableName": "public.scopes_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.scopes",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "scopes_users_userId_foreign": {
+          "constraintName": "scopes_users_userId_foreign",
+          "columnNames": ["userId"],
+          "localTableName": "public.scopes_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants_users",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "availability": {
+          "name": "availability",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "available",
+            "available-idle",
+            "away",
+            "be-right-back",
+            "busy",
+            "busy-idle",
+            "do-not-disturb",
+            "offline",
+            "presence-unknown"
+          ],
+          "mappedType": "enum"
+        },
+        "message": {
+          "name": "message",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "tenant_user_presence",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "tenant_user_presence_pkey",
+          "columnNames": ["userId"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "tenant_user_presence_userId_foreign": {
+          "constraintName": "tenant_user_presence_userId_foreign",
+          "columnNames": ["userId"],
+          "localTableName": "public.tenant_user_presence",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants_users",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "uuid_generate_v4()",
+          "mappedType": "uuid"
+        },
+        "user": {
+          "name": "user",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "availability": {
+          "name": "availability",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "available",
+            "available-idle",
+            "away",
+            "be-right-back",
+            "busy",
+            "busy-idle",
+            "do-not-disturb",
+            "offline",
+            "presence-unknown"
+          ],
+          "mappedType": "enum"
+        },
+        "activity": {
+          "name": "activity",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "enumItems": [
+            "available",
+            "away",
+            "be-right-back",
+            "busy",
+            "do-not-disturb",
+            "in-a-call",
+            "in-a-conference-call",
+            "inactive",
+            "in-a-meeting",
+            "offline",
+            "off-work",
+            "out-of-office",
+            "presence-unknown",
+            "presenting",
+            "urgent-interruptions-only"
+          ],
+          "mappedType": "enum"
+        },
+        "message": {
+          "name": "message",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "presence_sessions",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "presence_sessions_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "presence_sessions_user_foreign": {
+          "constraintName": "presence_sessions_user_foreign",
+          "columnNames": ["user"],
+          "localTableName": "public.presence_sessions",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants_users",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "uuid_generate_v4()",
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "displayName": {
+          "name": "displayName",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "operators",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": ["name"],
+          "composite": false,
+          "keyName": "operators_name_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "operators_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "operatorId": {
+          "name": "operatorId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "'operator:user'",
+          "enumItems": ["operator:admin", "operator:user"],
+          "mappedType": "enum"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "operator_users",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "operator_users_pkey",
+          "columnNames": ["userId"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "operator_users_userId_foreign": {
+          "constraintName": "operator_users_userId_foreign",
+          "columnNames": ["userId"],
+          "localTableName": "public.operator_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.users",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "operator_users_operatorId_foreign": {
+          "constraintName": "operator_users_operatorId_foreign",
+          "columnNames": ["operatorId"],
+          "localTableName": "public.operator_users",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.operators",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "tenantId": {
+          "name": "tenantId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "operatorId": {
+          "name": "operatorId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "'pending'",
+          "enumItems": ["pending", "active"],
+          "mappedType": "enum"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "operator_tenants",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "operator_tenants_pkey",
+          "columnNames": ["tenantId"],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "operator_tenants_tenantId_foreign": {
+          "constraintName": "operator_tenants_tenantId_foreign",
+          "columnNames": ["tenantId"],
+          "localTableName": "public.operator_tenants",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.tenants",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "operator_tenants_operatorId_foreign": {
+          "constraintName": "operator_tenants_operatorId_foreign",
+          "columnNames": ["operatorId"],
+          "localTableName": "public.operator_tenants",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.operators",
+          "updateRule": "cascade"
+        }
+      }
+    }
+  ]
+}
